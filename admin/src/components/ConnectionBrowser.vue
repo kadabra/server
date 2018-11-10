@@ -1,7 +1,8 @@
 <template>
   <v-card class="connection-browser">
     <connection :connection="connection" 
-      v-for="connection in connections" :key="connection.name"
+      v-for="connection in $store.getters.connections" 
+      :key="connection.name"
     />
   </v-card>
 </template>
@@ -13,9 +14,6 @@ export default {
   components: {
     Connection
   },
-  data: () => ({
-    connections: [{name: 'Local'}],
-  }),
 }
 </script>
 

@@ -31,60 +31,60 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      connection: Object
-    },
-    data() {
-      return {
-        open: [this.connection.name],
-        tree: [],
-        rawEndpoints: {}
+export default {
+  props: {
+    connection: Object
+  },
+  data() {
+    return {
+      open: [this.connection.name],
+      tree: [],
+      rawEndpoints: {}
+    }
+  },
+  computed: {
+    endpoints() {
+      let endpoints = []
+      for (let [name, desc] of Object.entries(this.rawEndpoints)) {
+        endpoints.push({name, desc})
       }
+      endpoints.sort((a,b) => a.name>b.name ? 1 : a.name<b.name ? -1 : 0)
+      return endpoints
     },
-    computed: {
-      endpoints() {
-        let endpoints = []
-        for (let [name, desc] of Object.entries(this.rawEndpoints)) {
-          endpoints.push({name, desc})
-        }
-        endpoints.sort((a,b) => a.name>b.name ? 1 : a.name<b.name ? -1 : 0)
-        return endpoints
-      },
-      items() {
-        let connection = {
-          name: this.connection.name,
-          children: this.endpoints
-        }
-        return [connection]
-      },
+    items() {
+      let connection = {
+        name: this.connection.name,
+        children: this.endpoints
+      }
+      return [connection]
     },
-    methods: {
-      refreshEndpoints() {
-        let component = this
-        component.$K('endpoints')
-          .find()
-          .then(d => {
-            component.rawEndpoints = d
-          })
-      },
-      serverSettings() {
-        alert('Server Settings [coming soon]')
-      },
-      createEndpoint() {
-        alert('Create Endpoint')
-      },
-      editEndpoint() {
-        alert('Edit Endpoint')
-      },
-      searchEndpoint() {
-        alert('Search Endpoint')
-      },
+  },
+  methods: {
+    refreshEndpoints() {
+      let component = this
+      component.$K('endpoints')
+        .find()
+        .then(d => {
+          component.rawEndpoints = d
+        })
     },
-    mounted() {
-      this.refreshEndpoints()
+    serverSettings() {
+      alert('Server Settings [coming soon]')
     },
-  }
+    createEndpoint() {
+      alert('Create Endpoint')
+    },
+    editEndpoint() {
+      alert('Edit Endpoint')
+    },
+    searchEndpoint() {
+      alert('Search Endpoint')
+    },
+  },
+  mounted() {
+    this.refreshEndpoints()
+  },
+}
 </script>
 
 <style scoped>

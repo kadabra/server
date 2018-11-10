@@ -8,6 +8,12 @@ export default SimpleVuex.Store({
     dark: true,
     menu: false,
     width: 0,
-    height: 0
+    height: 0,
+    connections: [
+      {
+        name: 'Local',
+        host: 'http://localhost:7777'
+      }
+    ]
   }
 })
