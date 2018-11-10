@@ -21,7 +21,6 @@ function registerEndpoints(after) {
         // Delete removed services 
         for (let oldName of Object.keys(oldSvcs)) {
           if (! (oldName in newServices)) {
-            console.log(`removing endpoint ${oldName} - ${oldSvcs[oldName].id}`)
             app.service('endpoints').remove(oldSvcs[oldName].id)
           }
         }
@@ -36,7 +35,6 @@ function registerEndpoints(after) {
             }
           } else if (! ['users', 'endpoints', 'authentication', 'endpoint-manager'].includes(name)) {
             // Register new services in endppoint
-            console.log(`creating endpoint ${name}`)
             app.service('endpoints').create({name, desc})
           }
           // Create new services

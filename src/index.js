@@ -9,5 +9,5 @@ process.on('unhandledRejection', (reason, p) =>
 );
 
 server.on('listening', () =>
-  logger.info('kadabra server started on http://%s:%d', app.get('host'), port)
+  logger.info('kadabra server started on http://%s:%d - visit in your browser to ger started!', app.get('host'), port)
 );
