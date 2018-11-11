@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.7.0] - 2018-11-10 - The Admin Update
+## [0.8.0] - 2018-11-10 - The Admin Update
 
 ### Admin
 - Debut of admin
