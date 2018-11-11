@@ -1,7 +1,7 @@
 {
   "name": "@kadabra/server",
   "description": "A realtime backend that's ready to go",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "main": "src",
   "keywords": [
     "feathers"
@@ -37,7 +37,7 @@
     "@feathersjs/express": "^1.2.7",
     "@feathersjs/feathers": "^3.2.3",
     "@feathersjs/socketio": "^3.2.7",
-    "@kadabra/nodemon": "^1.0.2",
+    "@kadabra/nodemon": "^1.0.3",
     "compression": "^1.7.3",
     "cors": "^2.8.4",
     "feathers-nedb": "^3.1.0",

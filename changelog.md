@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.8.2] - 2018-11-10
+- Fixed @kadabra/nodemon stack-tracing on post-install
+
 ## [0.8.1] - 2018-11-10
 - Reduced console logging
 
