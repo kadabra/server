@@ -47,15 +47,27 @@ module.exports = {
     }
   },
 
+  async patch(name, options) {
+    const services = read(filepath)
+    if (name in services) {
+      services[name] = Object.assign({}, services[name], options) 
+      write(filepath, services)
+      console.log('patched endpoint ' + name)
+      return {message: 'patched'}
+    } else {
+      return {message: "not found"}
+    }
+  },
+
   async remove(name) {
     const services = read(filepath)
     if (name in services) {
       delete services[name]
       write(filepath, services)
       console.log('deleted endpoint ' + name)
-      return {errors, message: 'removed'}
+      return {message: 'removed'}
     } else {
-      return {errors, message: "not found"}
+      return {message: "not found"}
     }
   }
 
