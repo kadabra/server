@@ -5,8 +5,9 @@
     :items="items"
     item-key="name"
   >
+    
     <template slot="prepend" slot-scope="{ item, open, leaf }">
-      <v-flex no-grow pr-2>
+      <v-flex no-grow pr-3>
         <template v-if="leaf">
           <v-icon v-if="item.icon">
             {{ item.icon }}
@@ -15,74 +16,84 @@
         </template>
       </v-flex>
     </template>
+
     <template slot="append" slot-scope="{ item, open, leaf }">
-      <v-flex no-grow pl-3 pr-1 v-if="leaf">
-        <v-icon class="muted fw" @click="editEndpoint">edit</v-icon>
-        <v-icon class="muted fw pl-1" @click="searchEndpoint">search</v-icon>
-        <v-flex class="fw"/>
+      <v-flex no-grow pl-3 pr-1 v-if="!leaf">
+        <edit-connection-btn :connection="connection" :index="index"/>
+        <create-endpoint-btn :connection="connection" :sub="sub"/>
       </v-flex>
       <v-flex no-grow pl-3 pr-1 v-else>
-        <v-icon class="muted fw" @click.stop="serverSettings">settings</v-icon>
-        <v-icon class="muted fw" @click.stop="refreshEndpoints">refresh</v-icon>
-        <v-icon class="muted fw" @click.stop="createEndpoint">add</v-icon>
+        <edit-endpoint-btn :connection="connection" :sub="sub" :endpoint="item"/>
+        <v-icon class="muted fw pl-1" 
+          @click="searchEndpoint(item, connection)">search</v-icon>
       </v-flex>
     </template>
+  
   </v-treeview>
 </template>
 
 <script>
+import EditConnectionBtn from './EditConnectionBtn.vue'
+import CreateEndpointBtn from './CreateEndpointBtn.vue'
+import EditEndpointBtn from './EditEndpointBtn.vue'
+
 export default {
+  components: {
+    EditConnectionBtn,
+    CreateEndpointBtn,
+    EditEndpointBtn
+  },
   props: {
-    connection: Object
+    connection: Object,
+    index: Number
   },
   data() {
     return {
+      kadabra: this.$kadabra(this.connection.host),
       open: [this.connection.name],
       tree: [],
-      rawEndpoints: {}
+      rawEndpoints: {},
+      subscription: null
     }
   },
   computed: {
     endpoints() {
       let endpoints = []
-      for (let [name, desc] of Object.entries(this.rawEndpoints)) {
-        endpoints.push({name, desc})
+      for (let [name, options] of Object.entries(this.rawEndpoints)) {
+        endpoints.push(options)
       }
-      endpoints.sort((a,b) => a.name>b.name ? 1 : a.name<b.name ? -1 : 0)
-      return endpoints
+      return endpoints.sort((a,b) => a.name>b.name ? 1 : a.name<b.name ? -1 : 0)
     },
     items() {
-      let connection = {
+      return [{
         name: this.connection.name,
         children: this.endpoints
-      }
-      return [connection]
+      }]
     },
   },
   methods: {
-    refreshEndpoints() {
+    unsub() {
+      if (this.subscription) {
+        this.subscription.unsubscribe()
+        this.subscription = null
+      }
+    },
+    sub() {
       let component = this
-      component.$K('endpoints')
+      this.unsub()
+      this.subscription = component.kadabra('endpoints')
+        .watch()
         .find()
-        .then(d => {
+        .subscribe(d => {
           component.rawEndpoints = d
         })
     },
-    serverSettings() {
-      alert('Server Settings [coming soon]')
-    },
-    createEndpoint() {
-      alert('Create Endpoint')
-    },
-    editEndpoint() {
-      alert('Edit Endpoint')
-    },
-    searchEndpoint() {
-      alert('Search Endpoint')
+    searchEndpoint(endpoint, connection) {
+      this.$store.commit('set-endpoint', {endpoint, connection})
     },
   },
   mounted() {
-    this.refreshEndpoints()
+    this.sub()
   },
 }
 </script>
@@ -101,6 +112,9 @@ export default {
 .connection >>> .v-treeview-node--leaf {
   margin: 0;
 }
+</style>
+
+<style>
 .muted {
   opacity: 0.1;
 }
@@ -115,3 +129,4 @@ export default {
   width: 32px;
 }
 </style>
+
