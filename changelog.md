@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.8.1] - 2018-11-10
+- Reduced console logging
+
 ## [0.8.0] - 2018-11-10 - The Admin Update
 
 ### Admin

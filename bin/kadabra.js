@@ -6,9 +6,9 @@ process.chdir(__dirname);
 process.chdir('..');
 
 if (process.platform === 'win32') {
-  nodemon = spawn('powershell', [ 'npm run start' ]);
+  nodemon = spawn('powershell', [ 'npm run start --silent' ]);
 } else {
-  nodemon = spawn('npm', [ 'run', 'start' ]);
+  nodemon = spawn('npm', [ 'run', 'start', '--silent' ]);
 }
 
 nodemon.stdout.on('data', function (data) {

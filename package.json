@@ -37,7 +37,7 @@
     "@feathersjs/express": "^1.2.7",
     "@feathersjs/feathers": "^3.2.3",
     "@feathersjs/socketio": "^3.2.7",
-    "@kadabra/nodemon": "^1.0.1",
+    "@kadabra/nodemon": "^1.0.2",
     "compression": "^1.7.3",
     "cors": "^2.8.4",
     "feathers-nedb": "^3.1.0",
