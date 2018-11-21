@@ -3,7 +3,8 @@ const { read, serviceMaker } = require('./utils/services.js')
 
 function registerEndpoints(after) {
   return function(app) {
-    const newServices = read('src/kadabra/services.json')
+    const newServices = read(process.env['KADABRA_SERVICES'])
+    
     app.service('endpoints')
       .find()
       .then(oldServices => {

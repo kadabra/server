@@ -26,32 +26,31 @@ function validate(endpoint, services) {
   return errors
 }
 
-const filepath = 'src/kadabra/services.json'
 
 module.exports = {
   
   async find() {
-    return Promise.resolve(read(filepath));
+    return Promise.resolve(read(process.env['KADABRA_SERVICES']));
   },
 
   async create(endpoint) {
-    const services = read(filepath)
+    const services = read(process.env['KADABRA_SERVICES'])
     const errors = validate(endpoint, services)
     if (errors.length) { 
       return {errors, message: 'failed'}
     } else {
       services[endpoint.name] = endpoint
-      write(filepath, services)
+      write(process.env['KADABRA_SERVICES'], services)
       console.log('created endpoint ' + endpoint.name)
       return { message: 'success' }
     }
   },
 
   async patch(name, options) {
-    const services = read(filepath)
+    const services = read(process.env['KADABRA_SERVICES'])
     if (name in services) {
       services[name] = Object.assign({}, services[name], options) 
-      write(filepath, services)
+      write(process.env['KADABRA_SERVICES'], services)
       console.log('patched endpoint ' + name)
       return {message: 'patched'}
     } else {
@@ -60,10 +59,10 @@ module.exports = {
   },
 
   async remove(name) {
-    const services = read(filepath)
+    const services = read(process.env['KADABRA_SERVICES'])
     if (name in services) {
       delete services[name]
-      write(filepath, services)
+      write(process.env['KADABRA_SERVICES'], services)
       console.log('deleted endpoint ' + name)
       return {message: 'removed'}
     } else {

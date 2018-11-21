@@ -3,7 +3,7 @@ const path = require('path')
 
 function modelMaker(endpointName) {
   return function(app) {
-    const dbPath = app.get('nedb')
+    let dbPath = process.env['KADABRA_FOLDER']
     const Model = new NeDB({
       filename: path.join(dbPath, endpointName+'.db'),
       autoload: true
