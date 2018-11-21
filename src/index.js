@@ -1,4 +1,9 @@
 /* eslint-disable no-console */
+
+if (!process.env['KADABRA_ROOT']) {
+  process.env['KADABRA_ROOT'] = 'DEFAULT'
+}
+
 const logger = require('./logger');
 const app = require('./app');
 const port = app.get('port');
