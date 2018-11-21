@@ -2,3 +2,4 @@ data
 admin
 node_modules
 .gitignore
+.kadabra
