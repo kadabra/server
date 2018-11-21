@@ -135,4 +135,6 @@ yarn-error.log*
 *.sln
 *.sw*
 
+# Kadabra
 package-lock.json
+.kadabra
