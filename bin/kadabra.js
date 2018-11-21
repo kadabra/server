@@ -51,13 +51,7 @@ fs.writeFile(process.env['KADABRA_SERVICES'], '{}', { flag: 'wx' }, e=>e);
 
 // Craft command
 const nodemon = path.join(globalpath, 'node_modules', '.bin', 'kadabra-nodemon')
-let command
-if (process.argv.includes('--here') || process.argv.includes('-H')) {
-  command = nodemon + ' -w ' + process.env['KADABRA_FOLDER'] + ' /src '
-} else {
-  command = nodemon + ' /src'  
-}
-console.log(command)
+let command = nodemon + ' -w ' + process.env['KADABRA_FOLDER'] + ' /src '
 
 // Execute
 shell.exec(command, function(code, stdout, stderr) {

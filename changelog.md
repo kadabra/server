@@ -1,5 +1,8 @@
 # Changelog
 
+### [0.9.1] - 2018-11-10
+- Bugfix
+
 ## [0.9.0] - 2018-11-20 - The .kadabra Folder Update
 - Kadabra now operates inside of a `.kadabra` folder
   - Run `kadabra --here` or `kadabra -H` to create or use a `.kadabra` folder in your current directory

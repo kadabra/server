@@ -1,7 +1,7 @@
 {
   "name": "@kadabra/server",
   "description": "A magical backend experience",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "main": "src",
   "keywords": [
     "feathers"
