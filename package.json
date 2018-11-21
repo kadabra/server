@@ -1,7 +1,7 @@
 {
   "name": "@kadabra/server",
-  "description": "A realtime backend that's ready to go",
-  "version": "0.8.2",
+  "description": "A magical backend experience",
+  "version": "0.9.0",
   "main": "src",
   "keywords": [
     "feathers"
@@ -24,7 +24,7 @@
     "npm": ">= 3.0.0"
   },
   "scripts": {
-    "start": "nodemon -w src/kadabra/services.json -e json src/",
+    "start": "nodemon src/",
     "dev": "nodemon src/"
   },
   "dependencies": {
@@ -37,16 +37,21 @@
     "@feathersjs/express": "^1.2.7",
     "@feathersjs/feathers": "^3.2.3",
     "@feathersjs/socketio": "^3.2.7",
-    "@kadabra/nodemon": "^1.0.3",
+    "@kadabra/nodemon": "^1.1.0",
+    "chalk": "^2.4.1",
+    "clear": "^0.1.0",
     "compression": "^1.7.3",
     "cors": "^2.8.4",
     "feathers-nedb": "^3.1.0",
+    "figlet": "^1.2.1",
     "helmet": "^3.14.0",
     "nedb": "^1.8.0",
+    "opn": "^5.4.0",
     "passport-auth0": "^1.1.0",
     "passport-github": "^1.1.0",
     "passport-google-oauth20": "^1.0.0",
     "serve-favicon": "^2.5.0",
+    "shelljs": "^0.8.3",
     "winston": "^3.1.0"
   },
   "devDependencies": {
