@@ -15,9 +15,9 @@ Then on your frontend, use the [kadabra client](https://github.com/kadabra/clien
 
 ### Options
 
-`kadabra --here` or `kadabra -H` to run kadabra in the current folder instead of globally.
+Include `-global`, `--global`, or `-G` to run kadabra globally instead of in the current folder.
 
-`kadabra --noopen` or `kadabra -N` to suppress opening admin panel 
+Include `-open`, `--open`, or `-O` to open the admin panel (localhost:7777) for you.
 
 ### Roadmap
 

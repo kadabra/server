@@ -1,7 +1,7 @@
 {
   "name": "@kadabra/server",
   "description": "A magical backend experience",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "main": "src",
   "keywords": [
     "feathers"
@@ -24,8 +24,7 @@
     "npm": ">= 3.0.0"
   },
   "scripts": {
-    "start": "nodemon src/",
-    "dev": "nodemon src/"
+    "dev": "node bin/kadabra.js"
   },
   "dependencies": {
     "@feathersjs/authentication": "^2.1.13",
@@ -37,7 +36,7 @@
     "@feathersjs/express": "^1.2.7",
     "@feathersjs/feathers": "^3.2.3",
     "@feathersjs/socketio": "^3.2.7",
-    "@kadabra/nodemon": "^1.1.1",
+    "@kadabra/nodemon": "^1.1.2",
     "chalk": "^2.4.1",
     "clear": "^0.1.0",
     "compression": "^1.7.3",

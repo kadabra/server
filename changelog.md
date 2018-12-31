@@ -1,15 +1,19 @@
 # Changelog
 
-### [0.9.2] - 2018-11-10
-- Cleanup
+### [0.9.3] - 2018-12-30
+- Reworked options flags
+  - `--global`, `-global`, or `-G` instead of `--here`
+  - `--open`, `-open`, or `-O` instead of `--noopen`
 
-### [0.9.1] - 2018-11-10
+
+### [0.9.1 & 0.9.2] - 2018-11-10
 - Bugfix
+- Cleanup
 
 ## [0.9.0] - 2018-11-20 - The .kadabra Folder Update
 - Kadabra now operates inside of a `.kadabra` folder
   - Run `kadabra --here` or `kadabra -H` to create or use a `.kadabra` folder in your current directory
-  - This means you can run Kadabra in your Dropbox/GDrive :rollsafe:
+  - This means you can run Kadabra in your Dropbox or Google Drive
 
 #### Other Updates
 - New splash page with `chalk`, `figlet`, and `clear`
@@ -25,7 +29,7 @@
 - Reduced console logging
 
 ## [0.8.0] - 2018-11-10 - The Admin Update
-1111
+
 #### Admin
 - Debut of admin
 - Features:

@@ -31,13 +31,14 @@ process.chdir('..');
 const globalpath = process.cwd()
 
 // Set environment variable
-if (process.argv.includes('--here') || process.argv.includes('-H')) {
+if (process.argv.some(arg => ['--global', '-global', '-G'].includes(arg))) {
+  process.env['KADABRA_ROOT'] = 'DEFAULT'
+  process.env['KADABRA_FOLDER'] = path.join(globalpath, '.kadabra')
+  console.log('Running in your global node_modules folder')
+} else {
   process.env['KADABRA_ROOT'] = initpath
   process.env['KADABRA_FOLDER'] = path.join(initpath, '.kadabra')
   console.log('Using directory: ' + process.env['KADABRA_ROOT'])
-} else {
-  process.env['KADABRA_ROOT'] = 'DEFAULT'
-  process.env['KADABRA_FOLDER'] = path.join(globalpath, '.kadabra')
 }
 
 // Create .kadabra folder if it doesn't exist
@@ -61,7 +62,7 @@ shell.exec(command, function(code, stdout, stderr) {
 });
 
 // Open in browser after 1 sec delay
-if (! (process.argv.includes('--noopen') || process.argv.includes('-N'))) {
+if (process.argv.some(arg => ['--open', '-open', '-O'].includes(arg))) {
   setTimeout(() => {
     opn('http://localhost:7777')
   }, 1000);
