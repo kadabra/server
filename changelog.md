@@ -1,6 +1,9 @@
 # Changelog
 
-### [0.10.0] - 2018-12-31
+### [0.10.1] - 2018-1-1
+- Forgot to publish admin - whoops!
+
+## [0.10.0] - 2018-12-31
 - Create + Delete added to admin!
 - Admin is realtime again!
 - New admin search!
