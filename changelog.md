@@ -1,10 +1,15 @@
 # Changelog
 
+### [0.10.0] - 2018-12-31
+- Create + Delete added to admin!
+- Admin is realtime again!
+- New admin search!
+- No editing yet - next update will move create into a modal and add an editor modal based on that
+
 ### [0.9.3] - 2018-12-30
 - Reworked options flags
   - `--global`, `-global`, or `-G` instead of `--here`
   - `--open`, `-open`, or `-O` instead of `--noopen`
-
 
 ### [0.9.1 & 0.9.2] - 2018-11-10
 - Bugfix
