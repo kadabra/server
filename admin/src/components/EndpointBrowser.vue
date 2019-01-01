@@ -22,7 +22,7 @@
               </v-list-tile>
             </v-list>
           </v-menu>
-          <pre>{{ record | formatted }}</pre>
+          <pre class="db-record-text">{{ record | formatted }}</pre>
         </v-card>
       </row>
     </column>
@@ -130,6 +130,9 @@ export default {
 .db-record {
   position: relative;
   min-width: 80px;
+  max-height: 200px;
+  max-width: 300px;
+  overflow: hidden;
 }
 .db-record-menu-btn {
   opacity: 0.3;
@@ -139,5 +142,9 @@ export default {
 }
 .db-record-menu-btn:hover {
   opacity: 1.0;
+}
+.db-record-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>

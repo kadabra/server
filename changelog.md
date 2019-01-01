@@ -1,5 +1,8 @@
 # Changelog
 
+### [0.10.2] - 2018-1-1
+- Fixed overflow issues on serach view in admin
+
 ### [0.10.1] - 2018-1-1
 - Forgot to publish admin - whoops!
 
