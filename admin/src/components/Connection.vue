@@ -9,21 +9,18 @@
     <template slot="prepend" slot-scope="{ item, open, leaf }">
       <v-flex no-grow pr-3>
         <template v-if="leaf">
-          <v-icon v-if="item.icon">
-            {{ item.icon }}
-          </v-icon>
-          <v-icon v-else>mdi-checkbox-blank-circle-outline</v-icon>
+          <mdi class="text-2xl" :class="item.icon ? `mdi-${item.icon}` : 'mdi-checkbox-blank-circle-outline'"/>
         </template>
       </v-flex>
     </template>
 
     <template slot="append" slot-scope="{ item, open, leaf }">
       <v-flex no-grow pl-3 pr-1 v-if="!leaf">
-        <edit-connection-btn :connection="connection" :index="index"/>
+        <edit-connection-btn :connection="connection" :index="index" v-if="!item.builtin"/>
         <create-endpoint-btn :connection="connection" :sub="sub"/>
       </v-flex>
       <v-flex no-grow pl-3 pr-1 v-else>
-        <edit-endpoint-btn :connection="connection" :sub="sub" :endpoint="item"/>
+        <edit-endpoint-btn :connection="connection" :sub="sub" :endpoint="item" v-if="!item.builtin"/>
         <v-icon class="muted fw pl-1" 
           @click="searchEndpoint(item, connection)">search</v-icon>
       </v-flex>
@@ -58,11 +55,17 @@ export default {
   },
   computed: {
     endpoints() {
-      let endpoints = []
+      let endpoints = [
+        {
+          name: "users",
+          icon: "account-circle",
+          builtin: true
+        }
+      ]
       for (let [name, options] of Object.entries(this.rawEndpoints)) {
         endpoints.push(options)
       }
-      return endpoints.sort((a,b) => a.name>b.name ? 1 : a.name<b.name ? -1 : 0)
+      return endpoints
     },
     items() {
       return [{
