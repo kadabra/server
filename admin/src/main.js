@@ -1,8 +1,9 @@
-import '@mdi/font/css/materialdesignicons.css'
 import Vue from 'vue'
-import './plugins/vuetify'
 import './plugins/primitives'
 import './plugins/kadabra'
+import './plugins/vue-feathers'
+import './plugins/context-menu'
+import './plugins/modal'
 import App from './layout/App.vue'
 import store from "./store.js";
 
