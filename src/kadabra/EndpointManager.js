@@ -1,4 +1,6 @@
 const { read, write } = require('./utils/services.js')
+const path = require('path');
+const fs = require('fs');
 
 const systemEndpoints = ['users', 'endpoints', 'authentication']
 const requiredKeys = ['name']
@@ -58,9 +60,18 @@ module.exports = {
     }
   },
 
-  async remove(name) {
+  async remove(name, options) {
     const services = read(process.env['KADABRA_SERVICES'])
     if (name in services) {
+      const dbFilepath = path.join(process.env['KADABRA_FOLDER'], `${name}.db`)
+      const db = fs.readFileSync(dbFilepath)
+      const dbContents = db.toString('utf8')
+      
+      if (!dbContents.length || options.deleteData) {
+        fs.unlink(dbFilepath, _=>_)
+        console.log('deleted db file')
+      }
+      
       delete services[name]
       write(process.env['KADABRA_SERVICES'], services)
       console.log('deleted endpoint ' + name)
