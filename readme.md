@@ -21,7 +21,7 @@ Include `-open`, `--open`, or `-O` to open the admin panel (localhost:7777) for 
 
 ### Roadmap
 
-We're currently at version **0.9.2**. See the [changelog](changelog.md)
+We're currently at version **0.10.3**. See the [changelog](changelog.md)
 
 Before **1.0.0** we need to complete these projects in our pipeline:
 1. [CRUD Operations](https://github.com/kadabra/server/projects/3)
