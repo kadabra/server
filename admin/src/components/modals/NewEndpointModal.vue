@@ -35,7 +35,7 @@
       </row>
     </column>
     <row justify-center pt-4 pb-6>
-      <modal-btn :class="{'opacity-25': !valid}" capitalize @click="onClick">Create endpoint</modal-btn>
+      <modal-btn :class="{'opacity-25 cursor-auto': !valid}" capitalize @click="onClick">Create endpoint</modal-btn>
     </row>
   </div>
 </template>

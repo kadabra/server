@@ -70,7 +70,7 @@ export default {
           magic: this.magic
         }).then(() => {
           this.$store.commit('set-route', 'login')
-          console.log('kadabra: created user in')
+          console.log('kadabra: created user '+this.email)
         }).catch(e => {
           console.error('kadabra: error creating user', e);
         });

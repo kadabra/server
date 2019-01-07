@@ -1,9 +1,8 @@
 <template>
-  <main class="stage pt-16 h-full w-full">
-
+  <main class="stage pt-16 h-full w-full flex flex-row-reverse">
     <collapse-transition>
       <template v-if="!$store.getters.loggedIn && ['login', 'create'].includes($store.getters.route)">
-        <container mx-auto pt-4>
+        <container mx-auto pt-4 absolute>
           <login/>
           <div class="text-center pt-4" v-if="$store.getters.route==='login'">
             <txt-secondary>or <span class="underline cursor-pointer" @click="$store.commit('set-route', 'create')">create an account</span></txt-secondary>
@@ -15,15 +14,16 @@
       </template>
     </collapse-transition>
     <template v-if="$store.getters.loggedIn">
+      <search-area/>
       <endpoint-explorer/>
     </template>
-
   </main>
 </template>
 
 <script>
 import Login from './../components/Login.vue'
 import EndpointExplorer from './../components/EndpointExplorer.vue'
+import SearchArea from './../components/SearchArea.vue'
 import { CollapseTransition } from 'vue2-transitions'
 
 export default {
@@ -31,6 +31,7 @@ export default {
     CollapseTransition,
     Login,
     EndpointExplorer,
+    SearchArea,
   }
 }
 </script>

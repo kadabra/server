@@ -35,8 +35,8 @@
       </row>
     </column>
     <row justify-center pt-4 pb-6>
-      <modal-btn mr-5 :class="{'opacity-25': !valid}" capitalize @click="onClickUpdate">Update endpoint</modal-btn>
-      <modal-btn ml-5 :class="{'opacity-25': !valid}" capitalize @click="onClickDelete">Delete endpoint</modal-btn>
+      <modal-btn mr-5 :class="{'opacity-25 cursor-auto': !valid}" capitalize @click="onClickUpdate">Update endpoint</modal-btn>
+      <modal-btn ml-5 :class="{'opacity-25 cursor-auto': !valid}" capitalize @click="onClickDelete">Delete endpoint</modal-btn>
     </row>
   </div>
 </template>
@@ -56,9 +56,9 @@ export default {
   data() {
     return {
       endpointName: this.endpoint.name,
-      endpointDesc: this.endpoint.desc,
+      endpointDesc: this.endpoint.desc || '',
       endpointIcon: this.endpoint.icon ,
-      endpointPrivate: this.endpoint.private,
+      endpointPrivate: this.endpoint.private || false,
       icons: mdi
     }
   },
