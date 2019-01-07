@@ -1,46 +1,38 @@
 <template>
-  <v-app class="app-root" :dark="$store.getters.dark">
-    <toolbar/>
+  <div id="kadabra-admin" class="h-screen w-screen darkmode-transition"
+    :class="{
+      'bg-grey-darkest theme-dark': $store.getters.dark,
+      'bg-grey-lightest theme-light': !$store.getters.dark
+    }"
+  >
+    <kadabra-header/>
     <stage/>
-  </v-app>
+  </div>
 </template>
 
 <script>
-import Toolbar from './Toolbar.vue'
+import KadabraHeader from './KadabraHeader.vue'
 import Stage from './Stage.vue'
 
 export default {
+  name: 'KadabraApp',
   components: {
-    Toolbar,
-    Stage,
+    KadabraHeader,
+    Stage
   },
-  data: () => ({
-    drawer: false,
-  }),
-  created() {
-    window.addEventListener('resize', this.handleResize)
-    this.handleResize();
-  },
-  destroyed() {
-    window.removeEventListener('resize', this.handleResize)
-  },
-  methods: {
-    handleResize() {
-      this.$store.commit('set-width', window.innerWidth);
-      this.$store.commit('set-height', window.innerHeight);
-    }
+  mounted() {
+    this.$kadabra
+      .authenticate()
+      .then(() => {
+        console.log('kadabra: automatically logged in');
+        this.$store.commit('set-route', 'home')
+        this.$store.commit('set-loggedIn', true)
+      })
+      .catch(e => {
+        if (e.name !== 'NotAuthenticated') console.error('kadabra: auth error', e.name);
+        this.$store.commit('set-route', 'login')
+        this.$store.commit('set-loggedIn', false)
+      })
   }
 }
 </script>
-
-<style scoped>
-.app-root {
-  width: 100vw;
-  height: 100vh;
-}
-.app-root >>> .application--wrap {
-  width: 100% !important;
-  height: 100% !important;
-}
-</style>
-

@@ -1,28 +1,36 @@
 <template>
-  <v-content class="stage">
-    <page/>
-  </v-content>
+  <main class="stage pt-16 h-full w-full">
+
+    <collapse-transition>
+      <template v-if="!$store.getters.loggedIn && ['login', 'create'].includes($store.getters.route)">
+        <container mx-auto pt-4>
+          <login/>
+          <div class="text-center pt-4" v-if="$store.getters.route==='login'">
+            <txt-secondary>or <span class="underline cursor-pointer" @click="$store.commit('set-route', 'create')">create an account</span></txt-secondary>
+          </div>
+          <div class="text-center pt-4" v-else>
+            <txt-secondary>or return to <span class="underline cursor-pointer" @click="$store.commit('set-route', 'login')">login</span></txt-secondary>
+          </div>
+        </container>
+      </template>
+    </collapse-transition>
+    <template v-if="$store.getters.loggedIn">
+      <endpoint-explorer/>
+    </template>
+
+  </main>
 </template>
 
 <script>
-import Page from './Page.vue'
+import Login from './../components/Login.vue'
+import EndpointExplorer from './../components/EndpointExplorer.vue'
+import { CollapseTransition } from 'vue2-transitions'
 
 export default {
   components: {
-    Page
-  },
+    CollapseTransition,
+    Login,
+    EndpointExplorer,
+  }
 }
 </script>
-
-
-<style scoped>
-.stage,
-.stage >>> .v-content__wrap {
-  width: 100% !important;
-  height: 100% !important;
-}
-.stage {
-  width: 100% !important;
-  height: 100% !important;
-}
-</style>
