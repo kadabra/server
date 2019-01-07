@@ -1,9 +1,20 @@
 # Changelog
 
-### [0.10.2] - 2018-1-1
+## [0.11.0] - 2018-01-07
+- Full admin rewite
+  - Muy fancy!
+- CRUD methods for endpoints and records
+- Auth from the ground up
+  - Local auth in your running kadabra folder
+- Endpoints can be 'private'
+  - Private endpoints require jwt authentication
+- "magic word" system as psuedo API Key for root 
+  - use for creating new users right now
+
+### [0.10.2] - 2018-01-01
 - Fixed overflow issues on serach view in admin
 
-### [0.10.1] - 2018-1-1
+### [0.10.1] - 2018-01-01
 - Forgot to publish admin - whoops!
 
 ## [0.10.0] - 2018-12-31
