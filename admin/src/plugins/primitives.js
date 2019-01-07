@@ -4,6 +4,7 @@ import Vue from "vue";
 const adaptiveTextColor = {
   primary: ({store}) => store.getters.dark ? 'text-grey-light' : 'text-white',
   secondary: ({store}) => store.getters.dark ? 'text-black' : 'text-grey-dark',
+  secondaryAlt: ({store}) => store.getters.dark ? 'text-white' : 'text-grey-darkest',
   accent: ({store}) => store.getters.dark ? 'text-grey-dark' : 'text-grey-light',
   accentReactive: ({store}) => store.getters.dark ? 'text-grey-dark hover:text-grey-light' : 'text-grey-light hover:text-white'
 }
@@ -30,6 +31,11 @@ registerPrimitives(Vue, {
     tag: "span", 
     classes: 'darkmode-transition',
     conditionals: [adaptiveTextColor.secondary]
+  },
+  TxtSecondaryAlt: { 
+    tag: "span", 
+    classes: 'darkmode-transition',
+    conditionals: [adaptiveTextColor.secondaryAlt]
   },
   TxtAccent: { 
     tag: "span", 

@@ -10,11 +10,11 @@
         </row>
         <row items-center justify-between>
           <box-secondary p-1 flex-1 overflow-hidden>
-            <txt-primary>
+            <txt-secondary-alt>
               <pre class="result-data cursor-pointer"
                 @click="onClickResult(result)"
               >{{ result | noId }}</pre>
-            </txt-primary>
+            </txt-secondary-alt>
           </box-secondary>
         </row>
       </box-primary>

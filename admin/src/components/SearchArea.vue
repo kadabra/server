@@ -1,7 +1,7 @@
 <template>
   <column id="search-area" flex-1 :class="{searching}">
     <column pr-4 py-4>
-      <row bg-black text-white rounded h-12 px-4 items-center justify-between>
+      <box-primary rounded h-12 px-4 items-center justify-between flex>
         <row>
           <txt-primary>
             <mdi mdi-magnify text-2xl mr-2/>
@@ -18,7 +18,7 @@
             <mdi mdi-close text-2xl cursor-pointer/>
           </txt-primary>
         </row>
-      </row>
+      </box-primary>
     </column>
     <column pb-4 pr-4 v-if="endpoint && searchInitiated">
       <search-results/>
