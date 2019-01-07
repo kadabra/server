@@ -34,12 +34,12 @@ function registerEndpoints(after) {
             if (oldSvcs[name].desc != newServices[name]) {
               app.service('endpoints').patch(oldSvcs[name].id, {desc})
             }
-          } else if (! ['users', 'endpoints', 'authentication', 'endpoint-manager'].includes(name)) {
-            // Register new services in endppoint
+          } else if (! ['users', 'endpoints', 'authentication'].includes(name)) {
+            // Register new services in endpoint
             app.service('endpoints').create({name, desc})
           }
           // Create new services
-          app.configure(serviceMaker(name))
+          app.configure(serviceMaker(name, desc.private))
         }
         return newServices
       })
