@@ -29,8 +29,8 @@
         <input type="checkbox" v-model="newEndpointPrivate"/>
         <txt-accent capitalize text pl-4
           v-text="newEndpointPrivate 
-            ? 'only logged-in users can access this endpoint' 
-            : 'anyone can access this endoint'"
+            ? 'Private: only logged-in users can access this endpoint' 
+            : 'Public: anyone can access this endpoint'"
         />
       </row>
     </column>
@@ -63,17 +63,20 @@ export default {
   methods: {
     onClick() {
       if (this.valid) {
-        this.$K('endpoints').create({ 
-          name: this.newEndpointName, 
-          desc: this.newEndpointDesc, 
-          private: this.newEndpointPrivate, 
-          icon: this.newEndpointIcon 
+        this.$F.authenticate()
+        .then(_ => {
+          this.$F.service('endpoints').create({ 
+            name: this.newEndpointName, 
+            desc: this.newEndpointDesc, 
+            private: this.newEndpointPrivate, 
+            icon: this.newEndpointIcon 
+          })
+          this.newEndpointName = ''
+          this.newEndpointDesc = '' 
+          this.newEndpointPrivate = false
+          this.newEndpointIcon = ''
+          this.$modal.hide('new-endpoint')
         })
-        this.newEndpointName = ''
-        this.newEndpointDesc = '' 
-        this.newEndpointPrivate = false
-        this.newEndpointIcon = ''
-        this.$modal.hide('new-endpoint')
       }
     }
   }
