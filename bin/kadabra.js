@@ -18,7 +18,7 @@ function getMagicWord(args) {
   ]
   for (arg of args) {
     // return first unknown arg
-    if (! (allArgs.includes(args))) return arg
+    if (! allArgs.includes(arg)) return arg
   }
   // else generate a random magic word
   return randomWords({exactly: 1})

@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.11.1] - 2018-01-07
+- Fixed bug w/ CLI flags
+
 ## [0.11.0] - 2018-01-07
 - Full admin rewite
   - Muy fancy!
