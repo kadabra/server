@@ -3,7 +3,7 @@ import Vue from "vue";
 
 const adaptiveTextColor = {
   primary: ({store}) => store.getters.dark ? 'text-grey-light' : 'text-white',
-  secondary: ({store}) => store.getters.dark ? 'text-grey-darkest hover:text-black' : 'text-grey-darkest',
+  secondary: ({store}) => store.getters.dark ? 'text-black' : 'text-grey-dark',
   accent: ({store}) => store.getters.dark ? 'text-grey-dark' : 'text-grey-light',
   accentReactive: ({store}) => store.getters.dark ? 'text-grey-dark hover:text-grey-light' : 'text-grey-light hover:text-white'
 }

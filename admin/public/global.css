@@ -16,13 +16,20 @@ html, body {
 .stage .v--modal-overlay {
   background: rgba(0,0,0,0.3);
 }
-.stage .vue-simple-context-menu--active {
+#kadabra-admin .vue-simple-context-menu--active {
   margin-top: -50px !important;
   margin-left: -140px !important;
   font-family: sans-serif !important;
+  background-color: #8795a1 !important;
 }
-.vue-simple-context-menu__item:hover {
-  background-color: #22292f !important;
+#kadabra-admin.theme-dark .vue-simple-context-menu--active {
+  background-color: #8795a1 !important;
+}
+#kadabra-admin.theme-light .vue-simple-context-menu--active {
+  background-color: #dae1e7 !important;
+}
+#kadabra-admin .vue-simple-context-menu__item:hover {
+  background-color: #606F7B !important;
 }
 
 
