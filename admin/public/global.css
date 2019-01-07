@@ -7,6 +7,9 @@ html, body {
 .w-72 {
   width: 18rem;
 }
+.h-128 {
+  height: 32rem;
+}
 .v--modal-box.v--modal {
   background-color: transparent;
   border-radius: 0;
@@ -15,6 +18,11 @@ html, body {
 }
 .stage .v--modal-overlay {
   background: rgba(0,0,0,0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 }
 #kadabra-admin .vue-simple-context-menu--active {
   margin-top: -50px !important;
