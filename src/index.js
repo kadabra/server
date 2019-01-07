@@ -13,6 +13,7 @@ process.on('unhandledRejection', (reason, p) =>
   logger.error('Unhandled Rejection at: Promise ', p, reason)
 );
 
-server.on('listening', () =>
-  logger.info('kadabra server started on http://%s:%d - visit in your browser to get started!', app.get('host'), port)
-);
+server.on('listening', () => {
+  console.log('Server (re)started on http://%s:%d', app.get('host'), port)
+  console.log()
+});
