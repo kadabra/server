@@ -1,6 +1,6 @@
 <template>
   <div class="endpoint-explorer" :class="{ show: $store.getters.route === 'home' }">
-    <div class="w-72 pt-4 mb-2 mx-2">
+    <div class="w-72 pt-4 pb-2 mx-2">
       <box-primary bg-black endpoint-header p-2 w-48 mx-auto h-10 items-center rounded>
         <span/>
         <txt-accent uppercase font-semibold w-full text-center>Endpoints</txt-accent>
@@ -16,10 +16,13 @@
       <icon-primary-static text-xl :class="`mdi-${endpoint.icon}`"/>
       <txt-primary endpoint-name cursor-pointer font-semibold text>{{ endpoint.name }}</txt-primary>
       <icon-accent mdi-dots-vertical text-lg item-wrapper__item @click.prevent.stop="openMenu($event, endpoint)"/>
+      <modal :name="`edit-endpoint-${endpoint.name}`" height="auto">
+        <edit-endpoint-modal :endpoint="endpoint"/>
+      </modal>
     </box-primary>
     <vue-simple-context-menu
       :elementId="'myUniqueId'"
-      :options="[{ name: 'Search' }, { name: 'New Record' }, { name: 'Edit Icon' }, { name: 'Delete Endpoint' }]"
+      :options="[{ name: 'Search' }, { name: 'New Record' }, { name: 'Edit Endpoint' }]"
       :ref="'contextMenu'"
       @optionClicked="optionClicked"
     />
@@ -29,7 +32,7 @@
 
 <script>
 import NewEndpointModal from './modals/NewEndpointModal.vue'
-import TextField from './TextField.vue'
+import EditEndpointModal from './modals/EditEndpointModal.vue'
 import { mixins } from '@vue-feathers/vue-feathers'
 const endpointsMixin = mixins.StreamsMixin(['endpoints'])
 
@@ -37,7 +40,7 @@ export default {
   mixins: [endpointsMixin],
   components: {
     NewEndpointModal,
-    TextField
+    EditEndpointModal
   },
   data: () => ({
   }),
@@ -58,7 +61,10 @@ export default {
       this.$refs.contextMenu.showMenu(event, item)
     },
     optionClicked({item, option}) {
-      if (option.name === "Delete Endpoint") this.$K('endpoints').remove(item.name)
+      if (option.name === "Edit Endpoint") this.$modal.show(`edit-endpoint-${item.name}`)
+      else {
+        console.log(item, option)
+      }
     },
     onInput(e) {
       console.log(e)
