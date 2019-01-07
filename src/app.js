@@ -10,7 +10,6 @@ const configuration = require('@feathersjs/configuration');
 const express = require('@feathersjs/express');
 const socketio = require('@feathersjs/socketio');
 
-
 const middleware = require('./middleware');
 const services = require('./services');
 const appHooks = require('./app.hooks');
@@ -43,8 +42,10 @@ app.configure(authentication);
 app.configure(services);
 
 const EndpointManager = require('./kadabra/EndpointManager.js')
+const privateHooks = require('./kadabra/hooks/private.js');
 app.configure(a => {
   a.use('endpoints', EndpointManager)
+  a.service('endpoints').hooks(privateHooks)
 });
 
 const { registerEndpoints } = require('./kadabra/registerEndpoints.js')
