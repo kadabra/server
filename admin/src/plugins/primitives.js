@@ -10,7 +10,7 @@ const adaptiveTextColor = {
 
 const adaptiveBgColor = {
   primary: ({store}) => store.getters.dark ? 'bg-black' : 'bg-grey-dark',
-  secondary: ({store}) => store.getters.dark ? 'text-grey-light' : 'text-grey-darkest',
+  secondary: ({store}) => store.getters.dark ? 'bg-grey-darkest' : 'bg-grey-lightest',
   accent: ({store}) => store.getters.dark ? 'text-grey-dark' : 'text-grey-light'
 }
 
@@ -57,6 +57,11 @@ registerPrimitives(Vue, {
     tag: "div", 
     classes: 'darkmode-transition',
     conditionals: [adaptiveBgColor.primary]
+  },
+  BoxSecondary: { 
+    tag: "div", 
+    classes: 'darkmode-transition',
+    conditionals: [adaptiveBgColor.secondary]
   },
 
   ModalBtn: {
