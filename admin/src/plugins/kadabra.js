@@ -1,7 +1,13 @@
 import Vue from 'vue'
 import kadabraClient from '@kadabra/client'
 
-const url = webpackHotUpdate ? 'localhost:7777' : window.location.href
+let url = window.location.href
+try {
+  if (webpackHotUpdate) {
+    url = 'localhost:7777'
+  }
+} catch(_) {}
+
 const service = kadabraClient(url)
 export const feathersClient = service('users').client
 

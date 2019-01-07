@@ -3,6 +3,13 @@ import SimpleVuex from "simple-vuex"
 
 Vue.use(SimpleVuex)
 
+let url = window.location.href
+try {
+  if (webpackHotUpdate) {
+    url = 'localhost:7777'
+  }
+} catch(_) {}
+
 export default SimpleVuex.Store({
   state: {
     dark: true,
@@ -11,7 +18,7 @@ export default SimpleVuex.Store({
     editing: null,
     route: 'loading',
     loggedIn: false,
-    url: webpackHotUpdate ? 'localhost:7777' : window.location.href,
-    endpoint: null
+    endpoint: null,
+    url
   }
 })
