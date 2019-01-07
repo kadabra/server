@@ -1,7 +1,9 @@
+const noPagination = require('./noPagination');
+
 module.exports = {
   before: {
     all: [],
-    find: [],
+    find: [noPagination],
     get: [],
     create: [],
     update: [],

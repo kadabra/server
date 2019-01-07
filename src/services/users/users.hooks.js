@@ -1,4 +1,5 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
+const noPagination = require('./../../kadabra/hooks/noPagination');
 
 const {
   hashPassword, protect
@@ -17,7 +18,7 @@ function magicWord(context) {
 module.exports = {
   before: {
     all: [],
-    find: [ authenticate('jwt') ],
+    find: [ authenticate('jwt'), noPagination ],
     get: [ authenticate('jwt') ],
     create: [ magicWord, hashPassword(), ],
     update: [ hashPassword(),  authenticate('jwt') ],

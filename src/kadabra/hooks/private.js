@@ -1,9 +1,10 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
+const noPagination = require('./noPagination');
 
 module.exports = {
   before: {
     all: [authenticate('jwt')],
-    find: [],
+    find: [noPagination],
     get: [],
     create: [],
     update: [],
