@@ -1,5 +1,5 @@
 <template>
-  <main class="stage pt-16 h-full w-full flex flex-row-reverse">
+  <main class="stage pt-16 h-full w-full flex justify-center flex-row-reverse">
     <collapse-transition>
       <template v-if="!$store.getters.loggedIn && ['login', 'create'].includes($store.getters.route)">
         <container mx-auto pt-4 absolute>
