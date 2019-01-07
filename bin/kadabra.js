@@ -5,9 +5,29 @@ const figlet = require("figlet");
 const clear = require("clear");
 const shell = require("shelljs");
 const opn = require('opn');
+const randomWords = require('random-words');
 
 const path = require('path');
 const fs = require('fs');
+
+// Address args
+function getMagicWord(args) {
+  const allArgs = [
+    '--global', '-global', '-G', 
+    '--open', '-open', '-O'
+  ]
+  for (arg of args) {
+    // return first unknown arg
+    if (! (allArgs.includes(args))) return arg
+  }
+  // else generate a random magic word
+  return randomWords({exactly: 1})
+}
+const config = {
+  runGlobally: process.argv.some(arg => ['--global', '-global', '-G'].includes(arg)),
+  open: process.argv.some(arg => ['--open', '-open', '-O'].includes(arg)),
+}
+process.env['MAGIC_WORD'] = getMagicWord(process.argv.slice(2))
 
 // Clear console
 clear()
@@ -16,13 +36,14 @@ clear()
 console.log(
   chalk.magenta(
     figlet.textSync("Kadabra", {
-      font: "Alligator2",
+      font: "Contessa",
       horizontalLayout: "default",
       verticalLayout: "default"
     })
   )
 );
 console.log();
+console.log('The magic word is: ' + process.env['MAGIC_WORD'])
 
 // Record original path then cd
 const initpath = process.cwd()
@@ -31,7 +52,7 @@ process.chdir('..');
 const globalpath = process.cwd()
 
 // Set environment variable
-if (process.argv.some(arg => ['--global', '-global', '-G'].includes(arg))) {
+if (config.runGlobally) {
   process.env['KADABRA_ROOT'] = 'DEFAULT'
   process.env['KADABRA_FOLDER'] = path.join(globalpath, '.kadabra')
   console.log('Running in your global node_modules folder')
@@ -62,7 +83,7 @@ shell.exec(command, function(code, stdout, stderr) {
 });
 
 // Open in browser after 1 sec delay
-if (process.argv.some(arg => ['--open', '-open', '-O'].includes(arg))) {
+if (config.open) {
   setTimeout(() => {
     opn('http://localhost:7777')
   }, 1000);

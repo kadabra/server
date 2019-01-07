@@ -4,12 +4,22 @@ const {
   hashPassword, protect
 } = require('@feathersjs/authentication-local').hooks;
 
+function magicWord(context) {
+  if (context.arguments[0].magic !== process.env['MAGIC_WORD']) {
+    throw new Error("That's not the magic word!")
+  } else {
+    console.log(`Magic word recognized, creating user: ${context.arguments[0].email}`)
+    delete context.arguments[0].magic
+    return context
+  }
+}
+
 module.exports = {
   before: {
     all: [],
     find: [ authenticate('jwt') ],
     get: [ authenticate('jwt') ],
-    create: [ hashPassword() ],
+    create: [ magicWord, hashPassword(), ],
     update: [ hashPassword(),  authenticate('jwt') ],
     patch: [ hashPassword(),  authenticate('jwt') ],
     remove: [ authenticate('jwt') ]
