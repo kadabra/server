@@ -7,6 +7,8 @@ export default SimpleVuex.Store({
   state: {
     dark: true,
     modal: false,
+    searching: null,
+    editing: null,
     route: 'loading',
     loggedIn: false,
     url: webpackHotUpdate ? 'localhost:7777' : window.location.href,
