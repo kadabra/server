@@ -11,7 +11,7 @@ npm i -g @kadabra/server
 kadabra
 ```
 
-Then on your frontend, use the [kadabra client](https://github.com/kadabra/client). 
+Then on your frontend, use the [kadabra client](https://github.com/kadabra/client).
 
 ### Roadmap
 
