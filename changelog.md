@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.11.2] - 2018-01-11
+- Externalized admin to its own repo
+- Updated admin
+- Updated readme to simplify and add options doc
+
 ## [0.11.1] - 2018-01-07
 - Fixed bug w/ CLI flags
 
