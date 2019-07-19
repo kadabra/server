@@ -1,5 +1,8 @@
 # Changelog
 
+### [0.11.4] - 2019-07-18
+- Updated admin to fix Tailwind issue
+
 ### [0.11.3] - 2018-01-14
 - Updated admin
 
